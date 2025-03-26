@@ -9,13 +9,13 @@ export default function Main() {
   return (
     <View style={[themes[colorScheme], { flex: 1 }]}>
       <View className='flex-1 justify-center bg-additional-white_inverted'>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={() => {
             setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
           }}
         >
           <Text className='text-label '>Switch Color {colorScheme}</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <ProfileInfo />
       </View>
     </View>
