@@ -1,0 +1,96 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // NOTE: Update this to include the paths to all of your component files.
+  content: ['./app/**/*.{js,jsx,ts,tsx}'],
+  presets: [require('nativewind/preset')],
+  theme: {
+    extend: {
+      colors: {
+        text_icons: {
+          primary: 'var(--color-text-icons-primary)',
+          secondary: 'var(--color-text-icons-secondary)',
+          placeholder: 'var(--color-text-icons-placeholder)',
+          disabled: 'var(--color-text-icons-disabled)',
+        },
+        background_components: {
+          default: 'var(--color-background-components-default)',
+          hover: 'var(--color-background-components-hover)',
+          press: 'var(--color-background-components-press)',
+          selected: 'var(--color-background-components-selected)',
+          disabled: 'var(--color-background-components-disabled)',
+        },
+        background_layout: {
+          canvas: 'var(--color-background_layout-canvas)',
+          container: 'var(--color-background_layout-container)',
+          pure: 'var(--color-background_layout-pure)',
+          surface_1: 'var(--color-background_layout-surface_1)',
+          surface_2: 'var(--color-background_layout-surface_2)',
+          focus_bg: 'var(--color-background_layout-focus_bg)',
+        },
+        primary: {
+          // default: 'var(--color-primary-default)',
+          dark: 'var(--color-primary-dark)',
+          base: 'var(--color-primary-base)',
+          light: 'var(--color-primary-light)',
+          op24: 'var(--color-primary-op-24)',
+          op16: 'var(--color-primary-op-16)',
+          op8: 'var(--color-primary-op-8)',
+        },
+        additional: {
+          white_inverted: 'var(--color-additional-white_inverted)',
+          black_inverted: 'var(--color-additional-black_inverted)',
+          white_base: 'var(--color-additional-white_base)',
+          white_base_op_50: 'var(--color-additional-op-50)',
+          white_base_op_5: 'var(--color-additional-op-5)',
+          black_base: 'var(--color-additional-black_base)',
+          black_base_op_50: 'var(--color-additional-black_base_op_50)',
+          black_base_op_5: 'var(--color-additional-black_base_op_5)',
+        },
+        success: {
+          secondary_dark: 'var(--color-success-dark)',
+          secondary_base: 'var(--color-success-base)',
+          secondary_light: 'var(--color-success-light)',
+          secondary_op_24: 'var(--color-success-op-24)',
+          secondary_op_16: 'var(--color-success-op-16)',
+          secondary_op_8: 'var(--color-success-op-8)',
+        },
+        warning: {
+          secondary_dark: 'var(--color-warning-dark)',
+          secondary_base: 'var(--color-warning-base)',
+          secondary_light: 'var(--color-warning-light)',
+          secondary_op_24: 'var(--color-warning-op-24)',
+          secondary_op_16: 'var(--color-warning-op-16)',
+          secondary_op_8: 'var(--color-warning-op-8)',
+        },
+        error: {
+          secondary_dark: 'var(--color-error-dark)',
+          secondary_base: 'var(--color-error-base)',
+          secondary_light: 'var(--color-error-light)',
+          secondary_op_24: 'var(--color-error-op-24)',
+          secondary_op_16: 'var(--color-error-op-16)',
+          secondary_op_8: 'var(--color-error-op-8)',
+        },
+        informative: {
+          secondary_dark: 'var(--color-informative-dark)',
+          secondary_base: 'var(--color-informative-base)',
+          secondary_light: 'var(--color-informative-light)',
+          secondary_op_24: 'var(--color-informative-op-24)',
+          secondary_op_16: 'var(--color-informative-op-16)',
+          secondary_op_8: 'var(--color-informative-op-8)',
+        },
+        grayscale: {
+          secondary_dark: 'var(--color-grayscale-dark)',
+          secondary_base: 'var(--color-grayscale-base)',
+          secondary_light: 'var(--color-grayscale-light)',
+          secondary_op_24: 'var(--color-grayscale-op-24)',
+          secondary_op_16: 'var(--color-grayscale-op-16)',
+          secondary_op_8: 'var(--color-grayscale-op-8)',
+        },
+        label: {
+          DEFAULT: 'var(--color-label)',
+        },
+      },
+    },
+  },
+  plugins: [],
+};
