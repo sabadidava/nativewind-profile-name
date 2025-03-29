@@ -16,6 +16,7 @@ const ProfileInfo = () => {
   const [selectedSex, setSelectedSex] = useState();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [inputValuePosition, setInputValuePosition] = useState('');
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -37,15 +38,11 @@ const ProfileInfo = () => {
     bottomSheetModalRef.current?.handleOpenModalPress();
   }, []);
 
-  // const handleCloseModalPress = useCallback(() => {
-  //   bottomSheetModalRef.current?.close();
-  // }, []);
-
   return (
     <GestureHandlerRootView>
       <TouchableWithoutFeedback onPress={handleTouchablePress}>
-        <View className=' px-[20]'>
-          <Text className='mb-[12] text-[32px] font-semibold text-text_icons-primary'>
+        <View className='flex-1 px-[20]'>
+          <Text className='mb-[12] text-[32px] mt-[61] font-semibold text-text_icons-primary '>
             Profile info
           </Text>
 
@@ -56,13 +53,10 @@ const ProfileInfo = () => {
           />
           <CustomTextInput
             placeholder='Position'
-            value={inputValue}
-            onChangeText={handleChangeText}
+            value={inputValuePosition}
+            onChangeText={setInputValuePosition}
           />
           <TouchableOpacity
-            className={`text-base text-gray-700 rounded-md h-[48]  ${
-              isSheetOpen ? 'border-primary-base' : 'opacity-0'
-            }`}
             onPress={() => {
               setIsSheetOpen(true);
               handlePresentModalPress();
@@ -77,6 +71,12 @@ const ProfileInfo = () => {
                 resizeMode='contain'
               />
             </View>
+            {isSheetOpen && (
+              <View
+                pointerEvents='none'
+                className='absolute h-full w-full border border-primary-base rounded-md'
+              />
+            )}
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>

@@ -38,28 +38,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {/* <View> */}
-      {/* <ProfileInfo /> */}
       <_layout />
-      {/* </View> */}
     </ThemeProvider>
   );
 }
-
-// <Stack>
-// <Stack.Screen
-//   name='profile'
-//   options={{ title: 'Profile', headerShown: false }}
-// />
-// {/* <Stack.Screen
-//   name='+not-found'
-//   options={{ title: 'Profile11', headerShown: false }}
-// /> */}
-// {/* <Stack.Screen name='(main)' options={{ headerShown: false }} /> */}
-// {/* <Stack.Screen
-//   name='BottomSelect'
-//   options={{ title: 'Profile1', headerShown: false }}
-// /> */}
-// </Stack>
-
-// <StatusBar style='auto' />

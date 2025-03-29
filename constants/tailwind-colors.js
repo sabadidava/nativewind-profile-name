@@ -59,8 +59,8 @@ export const themes = {
     '--color-primary-dark': '#064235', // primary-dark
     '--color-primary-base': '#085F4C', // primary-base
     '--color-primary-light': '#14866D', // primary-light
-    '--color-primary-op-24': '#085F4C3D', // primary-op-24 (предположительно, нужно рассчитать, если это не так)
-    '--color-primary-op-16': '#085F4C29', // primary-op-16 (предположительно, нужно рассчитать, если это не так)
+    '--color-primary-op-24': '#085F4C3D', // primary-op-24
+    '--color-primary-op-16': '#085F4C29', // primary-op-16
     '--color-primary-op-8': '#085F4C14',
   }),
   dark: vars({
@@ -121,8 +121,8 @@ export const themes = {
     '--color-primary-dark': '#3CA790', // primary-dark
     '--color-primary-base': '#269B82', // primary-base
     '--color-primary-light': '#1B846D', // primary-light
-    '--color-primary-op-24': '#1D8B733D', // primary-op-24 (предположительно, нужно рассчитать, если это не так)
-    '--color-primary-op-16': '#1D8B7329', // primary-op-16 (предположительно, нужно рассчитать, если это не так)
+    '--color-primary-op-24': '#1D8B733D', // primary-op-24
+    '--color-primary-op-16': '#1D8B7329', // primary-op-16
     '--color-primary-op-8': '#1D8B7314',
   }),
 };

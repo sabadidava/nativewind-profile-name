@@ -21,12 +21,12 @@ const CustomTextInput = ({ placeholder, value, onChangeText }) => {
         placeholder={isFocused || value.length > 0 ? '' : placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='bg-background_components-default h-[56] rounded-md px-4 text-sm font-normal text-text_icons-primary '
+        className='bg-background_components-default h-[56] rounded-md px-4 text-base font-normal text-text_icons-primary '
         placeholderTextColor={colorScheme === 'dark' ? '#FFFFFF' : '#030712'}
       />
       {(isFocused || value.length > 0) && (
         <Text
-          className='absolute left-4  text-text_icons-secondary text-xs top-2.5'
+          className='absolute left-4  text-text_icons-secondary text-xs top-2.5 '
           style={styles.placeholder}
         >
           {placeholder}
@@ -37,29 +37,8 @@ const CustomTextInput = ({ placeholder, value, onChangeText }) => {
 };
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    position: 'relative',
-    // marginBottom: 20,
-  },
-  input: {
-    // height: 50,
-    // borderColor: '#ccc',
-    // borderWidth: 1,
-    // borderRadius: 8,
-    paddingHorizontal: 10,
-    fontSize: 16,
-    // backgroundColor: 'red',
-    // color: 'red',
-  },
   filled: {
-    paddingTop: 30, // Adjusts the padding when the placeholder is "moved" to the top
-  },
-  placeholder: {
-    // position: 'absolute',
-    // left: 10,
-    // top: 12,
-    fontSize: 12,
-    // color: 'green',
+    paddingTop: 30,
   },
 });
 

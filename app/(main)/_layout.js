@@ -27,7 +27,7 @@ export default function Main() {
 }
 const styles = StyleSheet.create({
   darkModeButton: {
-    bottom: 200,
+    top: 400,
     position: 'absolute',
     alignSelf: 'center',
   },
