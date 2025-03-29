@@ -22,8 +22,13 @@ const TextInput = ({ placeholder, className, onChangeText, ...props }) => {
         translateY: interpolate(placeholderAnimation.value, [0.8, 1], [0, 18]),
       },
     ],
-    marginLeft: 14,
+    marginLeft: 9,
+
     position: 'absolute',
+    // color: '#03071280',
+
+    // placeholderColor: 'red',
+    // className: 'text-text_icons-secondary',
   }));
 
   return (
@@ -38,7 +43,7 @@ const TextInput = ({ placeholder, className, onChangeText, ...props }) => {
         onBlur={() => {
           if (!internalValue) placeholderAnimation.value = withTiming(1);
         }}
-        className='h-[48] rounded-md p-[10]'
+        className='h-[48] rounded-md '
       />
       <Animated.Text
         style={placeholderAnimatedStyle}

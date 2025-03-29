@@ -1,26 +1,45 @@
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
-  Button,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TextInput,
 } from 'react-native';
-
-import React, { useCallback, useRef, useState } from 'react';
-import TextInput from '@/components/TextInput';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, {
-  BottomSheetModal,
-  BottomSheetView,
   BottomSheetModalProvider,
   BottomSheetBackdrop,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
+import CustomTextInput from '../components/TextInputP';
 
 const ProfileInfo = () => {
   const bottomSheetModalRef = useRef(null);
+  const [selectedSex, setSelectedSex] = useState();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isMounted, setIsMounted] = useState(false); // флаг для отслеживания монтирования компонента
 
-  // callbacks
+  // Функция для отслеживания монтирования компонента
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false); // при размонтировании компонента сбрасываем флаг
+  }, []);
+
+  // Функция для обновления состояния
+  const handleChangeText = (newText) => {
+    if (isMounted) {
+      setInputValue(newText); // обновляем состояние только если компонент смонтирован
+    }
+  };
+
+  const handleTouchablePress = () => {
+    Keyboard.dismiss(); // Закрываем клавиатуру
+  };
+
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.expand();
   }, []);
@@ -31,45 +50,57 @@ const ProfileInfo = () => {
 
   const handleSheetChanges = useCallback((index) => {
     console.log('handleSheetChanges', index);
+    setIsSheetOpen(index !== -1);
   }, []);
-
-  const [selectedSex, setSelectedSex] = useState();
 
   return (
     <GestureHandlerRootView className='flex-1'>
-      <View className='flex-1 px-[20]'>
-        <Text className='mb-[12] mt-[114] text-[32px] font-semibold text-text_icons-primary'>
-          Profile info
-        </Text>
-        <TextInput
-          className='h-[56] rounded-md p-[10] bg-background_components-default'
-          placeholder='Name'
-        />
+      <TouchableWithoutFeedback onPress={handleTouchablePress}>
+        <View className='flex-1 px-[20]'>
+          <Text className='mb-[12] mt-[114] text-[32px] font-semibold text-text_icons-primary'>
+            Profile info
+          </Text>
 
-        <TextInput
-          className='mt-[12] h-[56] rounded-md  p-[10] bg-background_components-default'
-          placeholder='Surname'
-        />
-
-        <View
-          className={`flex-row items-center mt-[12] h-[48] rounded-md p-[10] bg-background_components-default ${
-            !!selectedSex ? 'border-primary-base border-[1px]' : ''
-          } `}
-        >
-          <TouchableOpacity
-            className='flex-1 text-base text-gray-700 '
-            placeholderTextColor='#9CA3AF'
-            onPress={handlePresentModalPress}
-          >
-            <Text>{selectedSex}</Text>
-          </TouchableOpacity>
-          <Image
-            source={require('@/assets/images/icons-frame.png')}
-            className='w-6 h-6 ml-2'
-            resizeMode='contain'
+          <CustomTextInput
+            placeholder='Full name'
+            value={inputValue} // передаем текущее значение состояния
+            onChangeText={handleChangeText} // передаем функцию для обновления состояния
+            // className='bg-black'
           />
+
+          {/* Остальные инпуты с NativeWind стилями */}
+          <TextInput
+            className='h-[56] rounded-md pl-3 bg-background_components-default'
+            placeholder='Full'
+          />
+
+          <TextInput
+            className='mt-[12] h-[56] rounded-md pl-3 bg-background_components-default '
+            placeholder='Name'
+          />
+
+          <View
+            className={`flex-row items-center mt-[12] h-[48] rounded-md p-[10] bg-background_components-default ${
+              isSheetOpen ? 'border-primary-base border-[1px]' : ''
+            } `}
+          >
+            <TouchableOpacity
+              className='flex-1 text-base text-gray-700'
+              onPress={() => {
+                setIsSheetOpen(true); // Добавляем изменение состояния
+                handlePresentModalPress(); // Открываем BottomSheet
+              }}
+            >
+              <Text>{selectedSex}</Text>
+            </TouchableOpacity>
+            <Image
+              source={require('@/assets/images/icons-frame.png')}
+              className='w-6 h-6 ml-2'
+              resizeMode='contain'
+            />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
 
       <BottomSheet
         ref={bottomSheetModalRef}
@@ -84,7 +115,10 @@ const ProfileInfo = () => {
           <View className='py-[22px] px-5 flex-row justify-between items-center'>
             <Text className='font-bold text-xl'>Select Sex</Text>
             <TouchableOpacity
-              onPress={() => bottomSheetModalRef.current.close()}
+              onPress={() => {
+                setIsSheetOpen(false);
+                bottomSheetModalRef.current?.close();
+              }}
               className='w-10 h-10 rounded-full bg-background_components-default items-center justify-center'
             >
               <Image
@@ -115,8 +149,6 @@ const ProfileInfo = () => {
                   )}
                 </View>
               </View>
-
-              {/* Label text */}
             </TouchableOpacity>
             <View className='w-full h-[1px] bg-background_components-default' />
             <TouchableOpacity
@@ -124,10 +156,10 @@ const ProfileInfo = () => {
                 setSelectedSex('Female');
                 handleCloseModalPress();
               }}
-              className=' items-center space-x-2 '
+              className='items-center space-x-2 '
             >
               <View className='flex-row items-center justify-between w-full py-5'>
-                <Text className=' font-semibold text-base'>Female</Text>
+                <Text className='font-semibold text-base'>Female</Text>
 
                 <View
                   className={`w-5 h-5 rounded-full border-2 ${
@@ -139,8 +171,6 @@ const ProfileInfo = () => {
                   )}
                 </View>
               </View>
-
-              {/* Label text */}
             </TouchableOpacity>
           </View>
         </BottomSheetView>
